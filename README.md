@@ -1,0 +1,2 @@
+# strucbox-domain
+strucbox-domain
