@@ -1,0 +1,21 @@
+language: java
+
+jdk:
+  - openjdk11
+
+
+build:
+  ci:
+    - ./gradlew publish
+    - echo "versionName=$BRANCH.$BUILD_NUMBER" >> $JOB_STATE/mybeehive-rest-api_image.env
+
+branches:
+  only:
+    - master
+
+integrations:
+  notifications:
+    - integrationName: slack_development
+      type: slack
+      recipients:
+        - "#development"
