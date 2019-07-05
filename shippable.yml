@@ -6,7 +6,7 @@ jdk:
 
 build:
   ci:
-    - echo $GOOGLE_CLOUD_REPO_INTEGRATION_JSON_KEY
+    - echo $GCP_JSON
     - ./gradlew publish
     - echo "versionName=$BRANCH.$BUILD_NUMBER" >> $JOB_STATE/mybeehive-rest-api_image.env
 
@@ -16,7 +16,7 @@ branches:
 
 integrations:
   generic:
-    - integrationName: google-cloud-repo
+    - integrationName: gcp_key
   notifications:
     - integrationName: slack_development
       type: slack
