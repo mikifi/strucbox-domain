@@ -6,9 +6,13 @@ jdk:
 
 build:
   ci:
-    - echo $GCP_JSON
+    - echo $GCP_JSON > `pwd`/tmp.json
+    - export GOOGLE_APPLICATION_CREDENTIALS=`pwd`/tmp.json
+    - echo $
     - ./gradlew publish
-    - echo "versionName=$BRANCH.$BUILD_NUMBER" >> $JOB_STATE/mybeehive-rest-api_image.env
+    - rm `pwd`/tmp.json
+    - echo "versionName=$BRANCH.$BUILD_NUMBER"
+    - echo "versionName=$BRANCH.$BUILD_NUMBER" >> $JOB_STATE/version.env
 
 branches:
   only:
