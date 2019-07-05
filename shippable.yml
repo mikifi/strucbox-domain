@@ -6,6 +6,7 @@ jdk:
 
 build:
   ci:
+    - echo $GOOGLE_CLOUD_REPO_INTEGRATION_JSON_KEY
     - ./gradlew publish
     - echo "versionName=$BRANCH.$BUILD_NUMBER" >> $JOB_STATE/mybeehive-rest-api_image.env
 
