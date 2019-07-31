@@ -53,10 +53,7 @@ tasks {
 
     val tag by creating(Exec::class) {
         commandLine("git", "tag", "${project.version}", "-a", "-m 'version ${project.version}'")
-    }
-    
-    val pushTag by creating(Exec::class) {
-        commandLine("git", "push", "origin", "${project.version}")
+        commandLine("git", "push", "git@github.com:mikifi/strucbox-domain.git", "${project.version}")
     }
 }
 
