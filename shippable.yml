@@ -6,13 +6,14 @@ jdk:
 
 build:
   ci:
+    - MAJOR_VERSION=`gradle properties -q | grep "version:" | awk '{print $2}' | awk -F '.' '{print $1}'`
+    - LATEST_TAG=`git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null`; if [[ $? -ne 0 ]]; then LATEST_TAG=0; fi
+    - MINOR_VERSION=$((`echo $LATEST_TAG | awk -F '.' '{print $2}'`+1))
+    - VERSION=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER
     - echo $GCP_JSON > `pwd`/tmp.json
     - export GOOGLE_APPLICATION_CREDENTIALS=`pwd`/tmp.json
-    - echo $
-    - ./gradlew publish
+    - ./gradlew -Pversion=$VERSION tag publish
     - rm `pwd`/tmp.json
-    - echo "versionName=$BRANCH.$BUILD_NUMBER"
-    - echo "versionName=$BRANCH.$BUILD_NUMBER" >> $JOB_STATE/version.env
 
 branches:
   only:

@@ -4,8 +4,6 @@
  * This generated file contains a sample Kotlin library project to get you started.
  */
 
-version = "0.1"
-group = "com.strucbox"
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
@@ -52,6 +50,12 @@ tasks {
         archives(javadocJar)
         archives(jar)
     }
+
+    val tag by creating(Exec::class) {
+        commandLine( "git", "tag", "${project.version}", "-a", "-m 'version ${project.version}'")
+        commandLine("git", "push", "origin", "${project.version}")
+
+    }
 }
 
 publishing {
@@ -62,15 +66,24 @@ publishing {
             artifact(tasks["javadocJar"])
         }
     }
-    
+
     repositories {
         maven {
             url = uri("gcs://mikifi-artifacts/maven2")
         }
-        
+
         maven {
-            name = "myRepo"
+            name = "localRepo"
             url = uri("file://" + System.getProperty("user.home") + "/.m2/repository/")
         }
+    }
+}
+
+open class GreetingTask : DefaultTask() {
+    var greeting = "hello from GreetingTask"
+
+    @TaskAction
+    fun greet() {
+        println(greeting)
     }
 }
