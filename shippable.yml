@@ -13,7 +13,7 @@ build:
     - echo $GCP_JSON > `pwd`/tmp.json
     - export GOOGLE_APPLICATION_CREDENTIALS=`pwd`/tmp.json
     - echo $VERSION
-    - ./gradlew -Pversion=$VERSION tag publish
+    - ./gradlew -Pversion=$VERSION tag pushTag publish
     - rm `pwd`/tmp.json
 
 branches:
