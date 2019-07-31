@@ -5,6 +5,8 @@
  */
 
 
+val gitRepo: String by project
+
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
     kotlin("jvm") version "1.3.40"
@@ -54,9 +56,10 @@ tasks {
     val tag by creating(Exec::class) {
         commandLine("git", "tag", "${project.version}", "-a", "-m 'version ${project.version}'")
     }
-    
+
+
     val pushTag by creating(Exec::class) {
-        commandLine("git", "push", "origin", "${project.version}")
+        commandLine("git", "push", "$gitRepo", "${project.version}")
     }
 }
 

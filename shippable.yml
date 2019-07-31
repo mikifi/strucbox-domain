@@ -6,7 +6,7 @@ jdk:
 
 build:
   ci:
-    - MAJOR_VERSION=`gradle properties -q | grep "version:" | awk '{print $2}' | awk -F '.' '{print $1}'`
+    - MAJOR_VERSION=`./gradlew properties -q | grep "version:" | awk '{print $2}' | awk -F '.' '{print $1}'`
     - LATEST_TAG=`git tag -l --sort -version:refname | head -n 1 2>/dev/null`; if [[ $? -ne 0 ]]; then LATEST_TAG=0; fi
     - MINOR_VERSION=$((`echo $LATEST_TAG | awk -F '.' '{print $2}'`+1))
     - VERSION=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER
