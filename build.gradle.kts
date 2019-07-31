@@ -52,9 +52,11 @@ tasks {
     }
 
     val tag by creating(Exec::class) {
-        commandLine( "git", "tag", "${project.version}", "-a", "-m 'version ${project.version}'")
+        commandLine("git", "tag", "${project.version}", "-a", "-m 'version ${project.version}'")
+    }
+    
+    val pushTag by creating(Exec::class) {
         commandLine("git", "push", "origin", "${project.version}")
-
     }
 }
 
