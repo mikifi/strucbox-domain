@@ -12,6 +12,7 @@ build:
     - VERSION=$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER
     - echo $GCP_JSON > `pwd`/tmp.json
     - export GOOGLE_APPLICATION_CREDENTIALS=`pwd`/tmp.json
+    - echo $VERSION
     - ./gradlew -Pversion=$VERSION tag publish
     - rm `pwd`/tmp.json
 
