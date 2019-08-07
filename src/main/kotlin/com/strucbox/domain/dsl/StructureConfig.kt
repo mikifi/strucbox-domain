@@ -15,6 +15,7 @@ data class StructureConfig internal constructor(
         val name: String,
         val owner: String,
         val nodes: List<NodeConfig>,
+        val relations: List<RelationConfig>,
         val public: Boolean,
         val layout: LayoutConfig?,
         val app: AppConfig?
@@ -25,6 +26,7 @@ data class StructureConfig internal constructor(
         lateinit var name: String
         lateinit var owner: String
         val nodes: MutableList<NodeConfig> = mutableListOf()
+        val relations: MutableList<RelationConfig> = mutableListOf()
         var public: Boolean = true
         var layout: LayoutConfig? = null
         var app: AppConfig? = null
@@ -33,6 +35,12 @@ data class StructureConfig internal constructor(
             val builder = NodeConfig.Builder()
             builder.init()
             nodes.add(builder.build())
+        }
+
+        fun relation(init: RelationConfig.Builder.() -> Unit) {
+            val builder = RelationConfig.Builder()
+            builder.init()
+            relations.add(builder.build())
         }
 
         fun layout(init: LayoutConfig.Builder.() -> Unit) {
@@ -49,7 +57,7 @@ data class StructureConfig internal constructor(
 
         fun build(): StructureConfig {
             return StructureConfig(
-                    name, owner, nodes, public, layout, app
+                    name, owner, nodes, relations, public, layout, app
             )
         }
     }
@@ -72,6 +80,7 @@ object StructureConfigConverter {
                     name = config.name,
                     owner = config.owner,
                     nodes = config.nodes.map { NodeConfigConverter.toDto(it) },
+                    relations= config.relations.map { RelationConfigConverter.toDto(it) },
                     layout = if (config.layout != null) LayoutConfigConverter.toDto(config.layout) else null,
                     app = if (config.app != null) AppConfigConverter.toDto(config.app) else null
             )

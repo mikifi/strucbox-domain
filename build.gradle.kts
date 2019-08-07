@@ -57,7 +57,6 @@ tasks {
         commandLine("git", "tag", "${project.version}", "-a", "-m 'version ${project.version}'")
     }
 
-
     val pushTag by creating(Exec::class) {
         commandLine("git", "push", "$gitRepo", "${project.version}")
     }
@@ -81,14 +80,5 @@ publishing {
             name = "localRepo"
             url = uri("file://" + System.getProperty("user.home") + "/.m2/repository/")
         }
-    }
-}
-
-open class GreetingTask : DefaultTask() {
-    var greeting = "hello from GreetingTask"
-
-    @TaskAction
-    fun greet() {
-        println(greeting)
     }
 }

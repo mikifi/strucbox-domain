@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.strucbox.domain.dsl.structure
+import com.strucbox.domain.dto.EdgeDto
 import com.strucbox.domain.dto.StructureDto
 import org.junit.Test
 
@@ -12,7 +13,7 @@ class StructureConfigTest {
     companion object {
         val objectMapper = ObjectMapper().registerKotlinModule()
 
-        val yamlMapper = ObjectMapper(YAMLFactory())
+        val yamlMapper = ObjectMapper(YAMLFactory()).registerKotlinModule()
 
         fun serialize(any: Any): String {
             return objectMapper.writeValueAsString(any)
@@ -42,6 +43,30 @@ class StructureConfigTest {
                 name = "node1"
             }
 
+            node {
+                name = "node2"
+            }
+
+            node {
+                name = "node3"
+            }
+
+            relation {
+                name = "subNode"
+                inverseName = "subNodeOf"
+                annotation = null
+
+                edge {
+                    source = "node1"
+                    target = "node2"
+                }
+
+                edge {
+                    source = "node1"
+                    target = "node3"
+                }
+            }
+
         }
         val structureDto: StructureDto = testStructure.toStructureDto()
         System.out.println(serialize(structureDto))
@@ -69,5 +94,38 @@ class StructureConfigTest {
         }
     }
 
+    @Test
+    fun structure_parseJson_dtoAsExpected() {
+        val json = "{\"name\":\"abc\",\"owner\":\"test\",\"nodes\":[{\"name\":\"node1\",\"fields\":[],\"actions\":[]},{\"name\":\"node2\",\"fields\":[],\"actions\":[]},{\"name\":\"node3\",\"fields\":[],\"actions\":[]}],\"relations\":[{\"name\":\"subNode\",\"edges\":[{\"source\":\"node1\",\"target\":\"node2\"},{\"source\":\"node1\",\"target\":\"node2\"}],\"cardinality\":\"ONE_TO_ONE\",\"inverseName\":\"subNodeOf\"}],\"public\":true}\n"
+        val structureDto = deserialize(json)
+        println(structureDto)
+    }
 
+    @Test
+    fun structure_parseYml_dtoAsExpected() {
+        val yaml = "name: \"abc\"\n" +
+                "owner: \"test\"\n" +
+                "nodes:\n" +
+                "- name: \"node1\"\n" +
+                "  fields: []\n" +
+                "  actions: []\n" +
+                "- name: \"node2\"\n" +
+                "  fields: []\n" +
+                "  actions: []\n" +
+                "- name: \"node3\"\n" +
+                "  fields: []\n" +
+                "  actions: []\n" +
+                "relations:\n" +
+                "- name: \"subNode\"\n" +
+                "  edges:\n" +
+                "  - source: \"node1\"\n" +
+                "    target: \"node2\"\n" +
+                "  - source: \"node1\"\n" +
+                "    target: \"node2\"\n" +
+                "  cardinality: \"ONE_TO_ONE\"\n" +
+                "  inverseName: \"subNodeOf\"\n" +
+                "public: true"
+        val structureDto = deserializeFromYaml(yaml)
+        println(structureDto)
+    }
 }
