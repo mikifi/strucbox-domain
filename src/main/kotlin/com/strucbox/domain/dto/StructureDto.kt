@@ -79,13 +79,13 @@ data class RelationDto(
         val cardinality: Cardinality = Cardinality.ONE_TO_ONE,
 
         @Tag(13)
-        @get:Schema(required = false, description = "Reverse name of relation. If provided, the relation is bidirectional")
-        val inverseName: String? = null,
+        @Valid @NotNull
+        @get:Schema(required = true, description = "List of annotations on relation")
+        val annotations: List<FieldDto> = listOf(),
 
         @Tag(14)
-        @get:Size(max = 100)
-        @get:Schema(required = false, description = "Name of relation annotation")
-        val annotation: String? = null
+        @get:Schema(required = false, description = "Reverse name of relation. If provided, the relation is bidirectional")
+        val inverseName: String? = null
 )
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

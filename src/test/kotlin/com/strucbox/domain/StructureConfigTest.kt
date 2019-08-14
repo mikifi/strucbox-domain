@@ -45,6 +45,14 @@ class StructureConfigTest {
 
             node {
                 name = "node2"
+                field {
+                    name = "fieldA"
+                    type = "some.class.String"
+                }
+                field {
+                    name = "fieldB"
+                    type = "some.class.Boolean"
+                }
             }
 
             node {
@@ -54,7 +62,16 @@ class StructureConfigTest {
             relation {
                 name = "subNode"
                 inverseName = "subNodeOf"
-                annotation = null
+
+                annotation {
+                    name = "annotationA"
+                    type = "some.class.String"
+                }
+
+                annotation {
+                    name = "annotationB"
+                    type = "some.class.Boolean"
+                }
 
                 edge {
                     source = "node1"

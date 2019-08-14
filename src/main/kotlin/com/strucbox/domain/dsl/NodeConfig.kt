@@ -9,7 +9,7 @@ data class NodeConfig(
 ) {
 
     @ScopedStructureSpecBuilder
-    class Builder() {
+    class Builder {
         lateinit var name: String
         val fields: MutableList<FieldConfig> = mutableListOf()
         var actions: List<String>? = null
