@@ -1,4 +1,4 @@
-package com.strucbox.domain.dto
+package com.strucbox.domain.v1.dto
 
 abstract class Action(
         val httpMethod: String,

@@ -1,6 +1,6 @@
-package com.strucbox.domain.dsl
+package com.strucbox.domain.v1.dsl
 
-import com.strucbox.domain.dto.StructureDto
+import com.strucbox.domain.v1.dto.StructureDto
 
 
 /**
@@ -80,7 +80,7 @@ object StructureConfigConverter {
                     name = config.name,
                     owner = config.owner,
                     nodes = config.nodes.map { NodeConfigConverter.toDto(it) },
-                    relations= config.relations.map { RelationConfigConverter.toDto(it) },
+                    relations = config.relations.map { RelationConfigConverter.toDto(it) },
                     layout = if (config.layout != null) LayoutConfigConverter.toDto(config.layout) else null,
                     app = if (config.app != null) AppConfigConverter.toDto(config.app) else null
             )

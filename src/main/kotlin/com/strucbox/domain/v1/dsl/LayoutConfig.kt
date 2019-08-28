@@ -1,6 +1,6 @@
-package com.strucbox.domain.dsl
+package com.strucbox.domain.v1.dsl
 
-import com.strucbox.domain.dto.LayoutDto
+import com.strucbox.domain.v1.dto.LayoutDto
 
 
 data class LayoutConfig(val icon: String, val css: String) {

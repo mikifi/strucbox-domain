@@ -1,12 +1,12 @@
-package com.strucbox.domain
+package com.strucbox.domain.v1
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import com.strucbox.domain.dsl.structure
-import com.strucbox.domain.dto.EdgeDto
-import com.strucbox.domain.dto.StructureDto
+import com.strucbox.domain.v1.dsl.structure
+import com.strucbox.domain.v1.dto.EdgeDto
+import com.strucbox.domain.v1.dto.StructureDto
 import org.junit.Test
 
 class StructureConfigTest {

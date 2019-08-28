@@ -1,6 +1,6 @@
-package com.strucbox.domain.dsl
+package com.strucbox.domain.v1.dsl
 
-import com.strucbox.domain.dto.AppDto
+import com.strucbox.domain.v1.dto.AppDto
 
 data class AppConfig(val androidApp: String, val iosApp: String) {
 

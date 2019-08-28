@@ -1,6 +1,6 @@
-package com.strucbox.domain.dsl
+package com.strucbox.domain.v1.dsl
 
-import com.strucbox.domain.dto.EdgeDto
+import com.strucbox.domain.v1.dto.EdgeDto
 
 data class EdgeConfig(val source: String, val target: String) {
 

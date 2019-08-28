@@ -1,7 +1,7 @@
-package com.strucbox.domain.dsl
+package com.strucbox.domain.v1.dsl
 
-import com.strucbox.domain.dto.Cardinality
-import com.strucbox.domain.dto.RelationDto
+import com.strucbox.domain.v1.dto.Cardinality
+import com.strucbox.domain.v1.dto.RelationDto
 
 
 data class RelationConfig(val name: String, val edges: List<EdgeConfig>, val cardinality: Cardinality, val annotations: List<FieldConfig>, val inverseName: String?) {

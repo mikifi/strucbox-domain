@@ -1,4 +1,4 @@
-package com.strucbox.domain.dto
+package com.strucbox.domain.v1.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import io.protostuff.Tag
@@ -144,11 +144,7 @@ data class FieldDto(
 
         @Tag(12)
         @get:Schema(required = false, description = "List of values that are allowed for this type")
-        val values: List<String>? = null,
-
-        @Tag(13)
-        @get:Schema(required = false, description = "Set to true if this field identifies the node resource")
-        val identifier: Boolean = false
+        val values: List<String>? = null
 )
 
 

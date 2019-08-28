@@ -1,6 +1,6 @@
-package com.strucbox.domain.dsl
+package com.strucbox.domain.v1.dsl
 
-import com.strucbox.domain.dto.FieldDto
+import com.strucbox.domain.v1.dto.FieldDto
 
 
 data class FieldConfig(val name: String, val type: String, val values: List<String>?) {

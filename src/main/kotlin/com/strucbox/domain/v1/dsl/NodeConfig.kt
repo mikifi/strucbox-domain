@@ -1,6 +1,6 @@
-package com.strucbox.domain.dsl
+package com.strucbox.domain.v1.dsl
 
-import com.strucbox.domain.dto.NodeDto
+import com.strucbox.domain.v1.dto.NodeDto
 
 data class NodeConfig(
         val name: String,
