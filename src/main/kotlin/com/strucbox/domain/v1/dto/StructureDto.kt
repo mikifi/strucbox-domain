@@ -126,7 +126,6 @@ data class NodeDto(
         val actions: List<String> = listOf()
 )
 
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(
         description = "A field has a name and a type defining how the field is displayed"
@@ -144,9 +143,20 @@ data class FieldDto(
 
         @Tag(12)
         @get:Schema(required = false, description = "List of values that are allowed for this type")
-        val values: List<String>? = null
+        val values: List<String>? = null,
+
+        @Tag(13)
+        @get:Schema(required = false, description = "Limitation for usage of field")
+        val limitation: Limitation? = null
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Schema(
+        description = "Enum with valid limitation for field or node"
+)
+enum class Limitation {
+    IN_ONLY, OUT_ONLY
+}
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(

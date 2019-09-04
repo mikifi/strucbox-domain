@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.strucbox.domain.v1.dsl.structure
-import com.strucbox.domain.v1.dto.EdgeDto
+import com.strucbox.domain.v1.dto.Limitation
 import com.strucbox.domain.v1.dto.StructureDto
 import org.junit.Test
 
@@ -48,6 +48,7 @@ class StructureConfigTest {
                 field {
                     name = "fieldA"
                     type = "some.class.String"
+                    limitation = Limitation.IN_ONLY
                 }
                 field {
                     name = "fieldB"
@@ -86,8 +87,8 @@ class StructureConfigTest {
 
         }
         val structureDto: StructureDto = testStructure.toStructureDto()
-        System.out.println(serialize(structureDto))
-        System.out.println(serializeToYaml(structureDto))
+        println(serialize(structureDto))
+        println(serializeToYaml(structureDto))
     }
 
     @Test
@@ -96,8 +97,8 @@ class StructureConfigTest {
         val string = serialize(map)
         val deserilized = objectMapper.readValue<Map<String, Any>>(string)
 
-        System.out.println(string)
-        System.out.println(deserilized)
+        println(string)
+        println(deserilized)
 
     }
 
@@ -109,6 +110,8 @@ class StructureConfigTest {
 
             public = false
         }
+        println(serialize(accessStructure.toStructureDto()))
+        
     }
 
     @Test
